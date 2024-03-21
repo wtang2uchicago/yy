@@ -10,6 +10,8 @@ print('hello Chicago')
 
 import matplotlib.pyplot as plt
 
+import matplotlib.pyplot as plt
+
 # Data
 years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
 males = [64.6, 65.5, 65.4, 64.9, 65.4, 65.6, 65.2, 64.8, 64.1, 64.4, 64.6]
@@ -20,11 +22,19 @@ plt.figure(figsize=(10, 6))
 plt.plot(years, males, marker='o', label='Males')
 plt.plot(years, females, marker='o', label='Females')
 
+# Add actual data to each data point
+for i in range(len(years)):
+    plt.annotate(f"{males[i]}%", (years[i], males[i]), textcoords="offset points", xytext=(0,10), ha='center')
+    plt.annotate(f"{females[i]}%", (years[i], females[i]), textcoords="offset points", xytext=(0,10), ha='center')
+
 # Labels and title
 plt.xlabel('Year')
 plt.ylabel('Percentage')
 plt.title('Percentage of Males and Females in Management Occupations (2012-2022)')
 plt.legend()
+
+# Set y-axis range from 0 to 100 percent
+plt.ylim(0, 90)
 
 # Show plot
 plt.grid(True)
