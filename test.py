@@ -49,14 +49,19 @@ import matplotlib.pyplot as plt
 provinces = ['Newfoundland and Labrador', 'Prince Edward Island', 'Nova Scotia', 'New Brunswick']
 expenditure = [18323.00, 5400.00, 34527.00, 26515.00]
 
-# Create horizontal bar chart
+# Create vertical bar chart
 plt.figure(figsize=(10, 6))
-plt.barh(provinces, expenditure, color='skyblue')
-plt.xlabel('Expenditure (Dollars)')
-plt.ylabel('Provinces')
+bars = plt.bar(provinces, expenditure, color='skyblue')  # Use plt.bar() for vertical bars
+
+# Add actual data to each bar
+for bar, exp in zip(bars, expenditure):
+    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1000, f"{exp}", ha='center', va='bottom')
+
+plt.ylabel('Expenditure (Dollars)')  # Update ylabel
+plt.xlabel('Provinces')  # Update xlabel
 plt.title('Household Final Consumption Expenditure Estimates by Province (2021)')
-plt.gca().invert_yaxis()  # Invert y-axis to display provinces from top to bottom
-plt.grid(axis='x', linestyle='--', alpha=0.7)  # Add grid lines
+plt.grid(axis='y', linestyle='--', alpha=0.7)  # Add grid lines for y-axis
+plt.xticks(rotation=45)  # Rotate x-axis labels for better readability
 plt.tight_layout()
 
 # Display the plot
